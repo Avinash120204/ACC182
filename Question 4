@@ -1,0 +1,28 @@
+def minimize_ticket_price(price, k):
+  """Minimizes the ticket price by removing digits.
+
+  Args:
+      price: The initial ticket price.
+      k: The number of digits to remove.
+
+  Returns:
+      The minimized ticket price.
+  """
+
+  price_str = str(price)
+  while k > 0:
+    min_digit = '9'
+    min_index = -1
+    for i in range(len(price_str)):
+      if price_str[i] < min_digit and price_str[i] != '0':
+        min_digit = price_str[i]
+        min_index = i
+    price_str = price_str[:min_index] + price_str[min_index + 1:]
+    k -= 1
+  return int(price_str)
+
+# Example usage
+price = 203
+k = 2
+result = minimize_ticket_price(price, k)
+print(result)  # Output: 0
