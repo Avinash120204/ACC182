@@ -1,0 +1,25 @@
+def is_stepping_number(num):
+  """Checks if a number is a stepping number."""
+  prev_digit = None
+  while num > 0:
+    digit = num % 10
+    if prev_digit is not None and abs(prev_digit - digit) != 1:
+      return False
+    prev_digit = digit
+    num //= 10
+  return True
+
+def find_stepping_numbers(n, m):
+  """Finds all stepping numbers in the given range."""
+  stepping_numbers = []
+  for num in range(n, m + 1):
+    if is_stepping_number(num):
+      stepping_numbers.append(num)
+  return stepping_numbers
+
+# Get input from the user
+n, m = map(int, input().split())
+
+# Find and print stepping numbers
+stepping_numbers = find_stepping_numbers(n, m)
+print(stepping_numbers)
